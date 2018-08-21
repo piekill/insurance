@@ -1,96 +1,106 @@
 <template>
   <div>
-    <div class="pick-buttons">
-      <Select v-model="gradePick" style="width:100px" placeholder="请选择年级" @on-change="queryRoster">
-        <Option v-for="grade in gradeList" :value="grade.value" :key="grade.value">
-          {{ grade.label }}
-        </Option>
-      </Select>
-      <Select v-model="classPick" style="width:100px" placeholder="请选择班级" @on-change="queryRoster">
-        <Option v-for="clasz in classList" :value="clasz.value" :key="clasz.value">
-          {{ clasz.label }}
-        </Option>
-      </Select>
-    </div>
-    <div height="700px">
-      <Table size="small" border ref="selection" :loading="isLoading" :columns="columns"
-             :data="dataList" :height="tableHeight" :no-data-text="noDataMsg" >
-      </Table>
-    </div>
-    <div class="roster-buttons">
-      <Button @click="handleSelectAll(true)" type="info">全选</Button>
-      <Button @click="handleSelectAll(false)" type="info">清空</Button>
-      <Button @click="handleShowAddRecord" type="primary">新增</Button>
-      <Button @click="confirm" type="success">提交</Button>
-      <Button @click="logout" type="warning">注销</Button>
-    </div>
-    <Modal
-      v-model="confirmModal"
-      title="确认提交"
-      @on-ok="submit"
-      width="300">
-      <p>已选人数: {{ selected }}</p>
-    </Modal>
-    <Modal title="新增学生记录" v-model="showAddRecord" width="320"
-           :mask-closable="false">
-      <Form ref="addingRecord" :model="curRecord" :rules="recordRule" :label-width="80">
-        <Form-item label="姓名" prop="name">
-          <Input class="dc-w200" v-model="curRecord.name" autofocus="true"/>
-        </Form-item>
-        <Form-item label="性别" prop="gender">
-          <Input class="dc-w200" v-model="curRecord.gender" />
-        </Form-item>
-        <Form-item label="生日" prop="birthday">
-          <Input class="dc-w200" v-model="curRecord.birthday" />
-        </Form-item>
-        <Form-item label="身份证" prop="nid">
-          <Input class="dc-w200" v-model="curRecord.nid" />
-        </Form-item>
-        <Form-item label="监护人" prop="guardian">
-          <Input class="dc-w200" v-model="curRecord.guardian" />
-        </Form-item>
-        <Form-item label="电话" prop="phone">
-          <Input class="dc-w200" v-model="curRecord.phone" />
-        </Form-item>
-      </Form>
-      <div slot="footer">
-        <Button @click="cancelAddRecord" class="dc-ml10 dc-w80">取消</Button>
-        <Button @click="onAddRecord" class="dc-ml10 dc-w80" type="primary">确认</Button>
+    <Framework activeMenu="1">
+      <div slot="main-content">
+        <div class="pick-buttons">
+          <Select v-model="gradePick" style="width:100px"
+                  placeholder="请选择年级" @on-change="queryRoster">
+            <Option v-for="grade in gradeList" :value="grade.value" :key="grade.value">
+              {{ grade.label }}
+            </Option>
+          </Select>
+          <Select v-model="classPick" style="width:100px"
+                  placeholder="请选择班级" @on-change="queryRoster">
+            <Option v-for="clasz in classList" :value="clasz.value" :key="clasz.value">
+              {{ clasz.label }}
+            </Option>
+          </Select>
+        </div>
+        <div height="700px">
+          <Table size="small" border ref="selection" :loading="isLoading" :columns="columns"
+                 :data="dataList" :height="tableHeight" :no-data-text="noDataMsg" >
+          </Table>
+        </div>
+        <div class="roster-buttons">
+          <Button @click="handleSelectAll(true)" type="info">全选</Button>
+          <Button @click="handleSelectAll(false)" type="info">清空</Button>
+          <Button @click="handleShowAddRecord" type="primary">新增</Button>
+          <Button @click="confirm" type="success">提交</Button>
+          <Button @click="logout" type="warning">注销</Button>
+        </div>
+        <Modal
+          v-model="confirmModal"
+          title="确认提交"
+          @on-ok="submit"
+          width="300">
+          <p>已选人数: {{ selected }}</p>
+        </Modal>
+        <Modal title="新增学生记录" v-model="showAddRecord" width="320"
+               :mask-closable="false">
+          <Form ref="addingRecord" :model="curRecord" :rules="recordRule" :label-width="80">
+            <Form-item label="姓名" prop="name">
+              <Input class="dc-w200" v-model="curRecord.name" autofocus="true"/>
+            </Form-item>
+            <Form-item label="性别" prop="gender">
+              <Input class="dc-w200" v-model="curRecord.gender" />
+            </Form-item>
+            <Form-item label="生日" prop="birthday">
+              <Input class="dc-w200" v-model="curRecord.birthday" />
+            </Form-item>
+            <Form-item label="身份证" prop="nid">
+              <Input class="dc-w200" v-model="curRecord.nid" />
+            </Form-item>
+            <Form-item label="监护人" prop="guardian">
+              <Input class="dc-w200" v-model="curRecord.guardian" />
+            </Form-item>
+            <Form-item label="电话" prop="phone">
+              <Input class="dc-w200" v-model="curRecord.phone" />
+            </Form-item>
+          </Form>
+          <div slot="footer">
+            <Button @click="cancelAddRecord" class="dc-ml10 dc-w80">取消</Button>
+            <Button @click="onAddRecord" class="dc-ml10 dc-w80" type="primary">确认</Button>
+          </div>
+        </Modal>
+        <Modal title="修改学生记录" v-model="showUpdateRecord" width="320"
+               :mask-closable="false">
+          <Form ref="updatingRecord" :model="curRecord" :rules="recordRule" :label-width="80">
+            <Form-item label="姓名" prop="name">
+              <Input class="dc-w200" v-model="curRecord.name" autofocus="true"/>
+            </Form-item>
+            <Form-item label="性别" prop="gender">
+              <Input class="dc-w200" v-model="curRecord.gender" />
+            </Form-item>
+            <Form-item label="生日" prop="birthday">
+              <Input class="dc-w200" v-model="curRecord.birthday" />
+            </Form-item>
+            <Form-item label="身份证" prop="nid">
+              <Input class="dc-w200" v-model="curRecord.nid" />
+            </Form-item>
+            <Form-item label="监护人" prop="guardian">
+              <Input class="dc-w200" v-model="curRecord.guardian" />
+            </Form-item>
+            <Form-item label="电话" prop="phone">
+              <Input class="dc-w200" v-model="curRecord.phone" />
+            </Form-item>
+          </Form>
+          <div slot="footer">
+            <Button @click="cancelUpdateRecord" class="dc-ml10 dc-w80">取消</Button>
+            <Button @click="onUpdateRecord" class="dc-ml10 dc-w80" type="primary">确认</Button>
+          </div>
+        </Modal>
       </div>
-    </Modal>
-    <Modal title="修改学生记录" v-model="showUpdateRecord" width="320"
-           :mask-closable="false">
-      <Form ref="updatingRecord" :model="curRecord" :rules="recordRule" :label-width="80">
-        <Form-item label="姓名" prop="name">
-          <Input class="dc-w200" v-model="curRecord.name" autofocus="true"/>
-        </Form-item>
-        <Form-item label="性别" prop="gender">
-          <Input class="dc-w200" v-model="curRecord.gender" />
-        </Form-item>
-        <Form-item label="生日" prop="birthday">
-          <Input class="dc-w200" v-model="curRecord.birthday" />
-        </Form-item>
-        <Form-item label="身份证" prop="nid">
-          <Input class="dc-w200" v-model="curRecord.nid" />
-        </Form-item>
-        <Form-item label="监护人" prop="guardian">
-          <Input class="dc-w200" v-model="curRecord.guardian" />
-        </Form-item>
-        <Form-item label="电话" prop="phone">
-          <Input class="dc-w200" v-model="curRecord.phone" />
-        </Form-item>
-      </Form>
-      <div slot="footer">
-        <Button @click="cancelUpdateRecord" class="dc-ml10 dc-w80">取消</Button>
-        <Button @click="onUpdateRecord" class="dc-ml10 dc-w80" type="primary">确认</Button>
-      </div>
-    </Modal>
+    </Framework>
   </div>
 </template>
 <script>
 import { ROSTER_CLASSLIST, ROSTER_QUERY, ROSTER_UPDATE, ROSTER_ADD, ROSTER_CHANGE } from '../common/api';
+import Framework from './framework';
 
 export default {
+  components: {
+    Framework,
+  },
   data() {
     return {
       columns: [
@@ -279,7 +289,7 @@ export default {
       });
     },
     handleResize() {
-      this.tableHeight = `${document.documentElement.clientHeight}` - 190;
+      this.tableHeight = `${document.documentElement.clientHeight}` - 200;
       this.$forceUpdate();
     },
     logout() {

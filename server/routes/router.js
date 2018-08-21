@@ -10,5 +10,6 @@ router.post('/api/roster/update', rosterCtrl.update);
 router.post('/api/roster/add', rosterCtrl.add);
 router.post('/api/roster/change', rosterCtrl.change);
 router.post('/api/login', loginCtrl.login);
+router.get('/api/roster/overview', rosterCtrl.overview);
 
 module.exports = router;

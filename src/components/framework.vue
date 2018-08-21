@@ -30,25 +30,25 @@
   <div class="layout">
     <Layout>
       <Header>
-        <Menu mode="horizontal" theme="dark" active-name="1">
+        <Menu mode="horizontal" theme="dark" :active-name="activeMenu">
           <div class="layout-logo">
             <img src="../assets/Ping_An_Logo.png" style="max-height: 100%; max-width: 100%;"/>
           </div>
           <div class="layout-nav">
-            <menu-item name="1">
+            <menu-item name="1" to="/">
               <Icon type="ios-paper"></Icon>
               名册录入
             </menu-item>
-            <!--<menu-item name="2">-->
-              <!--<Icon type="ios-filing"></Icon>-->
-              <!--管理-->
-            <!--</menu-item>-->
+            <menu-item name="2" to="/manage" v-if="isAdmin">
+              <Icon type="ios-filing"></Icon>
+              管理
+            </menu-item>
           </div>
         </Menu>
       </Header>
       <Content style="padding: 5px">
           <Card :bordered="false" :padding=5>
-            <Roster></Roster>
+            <slot name="main-content" ></slot>
           </Card>
       </Content>
       <Footer class="layout-footer-center">2018 &copy; Piekill.com</Footer>
@@ -57,12 +57,17 @@
 </template>
 
 <script>
-import Roster from '../components/roster';
 
 export default {
-  name: 'Frame',
-  components: {
-    Roster,
+  props: ['activeMenu'],
+  name: 'Framework',
+  data() {
+    return {
+      isAdmin: false,
+    };
+  },
+  created() {
+    this.isAdmin = this.$store.getters.role === 'admin';
   },
 };
 </script>

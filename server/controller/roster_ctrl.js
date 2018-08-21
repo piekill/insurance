@@ -1,5 +1,8 @@
 const Sequelize = require('sequelize');
 const config = require('./config');
+const moment = require('moment');
+
+moment.locale('zh-cn');
 
 const sequelize = new Sequelize(config.database, config.username, config.password, {
   host: config.host,
@@ -64,6 +67,23 @@ module.exports = {
   classlist(req, res) {
     return rosterModel.aggregate('class', 'DISTINCT', { plain: false })
       .then((d) => {
+        res.send({
+          result_code: 'success',
+          data: d,
+        });
+      });
+  },
+  /* eslint no-param-reassign:["error", { "ignorePropertyModificationsFor": ["elem"] }] */
+  overview(req, res) {
+    return sequelize.query('select grade, class, count(*) as total, sum(register) as registered, ' +
+      'max(unix_timestamp(update_time)) as update_time ' +
+      'from roster group by grade, class order by grade, class',
+    { type: sequelize.QueryTypes.SELECT })
+      .then((d) => {
+        d.forEach((elem) => {
+          const t = moment.unix(elem.update_time);
+          elem.update_time = t.format('ll LTS');
+        });
         res.send({
           result_code: 'success',
           data: d,

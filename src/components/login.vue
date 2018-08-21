@@ -65,6 +65,7 @@ export default {
           this.setCookie('session', res.data.session, expireDays);
           this.$forceUpdate();
           this.$store.commit('updateUserInfo', res.data.data);
+          this.$router.addRoutes(this.$store.getters.routes);
           this.$router.replace('/');
         } else {
           this.$Message.error('登录失败，请输入正确密码。');

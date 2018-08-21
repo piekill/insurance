@@ -37,6 +37,19 @@ Vue.prototype.delCookie = (name) => {
   if (cval != null) { document.cookie = `${name}=${cval};expires=${exp.toGMTString()}`; }
 };
 
+router.beforeEach((to, from, next) => {
+  if (store.getters.role !== null) {
+    if (to.path === '/login') {
+      next({ path: '/' });
+    } else {
+      next();
+    }
+  } else {
+    next('/login');
+  }
+});
+
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
@@ -55,8 +68,6 @@ new Vue({
     checkLogin() {
       if (!this.getCookie('session')) {
         this.$router.push('/login');
-      } else {
-        this.$router.push('/');
       }
     },
   },
