@@ -2,6 +2,8 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue';
 import iView from 'iview';
+import 'babel-polyfill';
+import Cookies from 'js-cookie';
 import 'iview/dist/styles/iview.css';
 import App from './App';
 import router from './router';
@@ -13,42 +15,6 @@ window.post = utils.ajaxPost;
 Vue.config.productionTip = false;
 
 Vue.use(iView);
-
-Vue.prototype.setCookie = (name, value, expiredays) => {
-  const exdate = new Date();
-  exdate.setDate(exdate.getDate() + expiredays);
-  document.cookie = `${name}=${escape(value)}${(expiredays == null) ? '' : `;expires=${exdate.toGMTString()}`}`;
-};
-
-// 获取cookie、
-function getCookie(name) {
-  const reg = new RegExp(`(^| )${name}=([^;]*)(;|$)`);
-  const arr = document.cookie.match(reg);
-  if (arr) { return (arr[2]); }
-  return null;
-}
-Vue.prototype.getCookie = getCookie;
-
-// 删除cookie
-Vue.prototype.delCookie = (name) => {
-  const exp = new Date();
-  exp.setTime(exp.getTime() - 1);
-  const cval = getCookie(name);
-  if (cval != null) { document.cookie = `${name}=${cval};expires=${exp.toGMTString()}`; }
-};
-
-router.beforeEach((to, from, next) => {
-  if (store.getters.role !== null) {
-    if (to.path === '/login') {
-      next({ path: '/' });
-    } else {
-      next();
-    }
-  } else {
-    next('/login');
-  }
-});
-
 
 /* eslint-disable no-new */
 new Vue({
@@ -66,7 +32,7 @@ new Vue({
   },
   methods: {
     checkLogin() {
-      if (!this.getCookie('session')) {
+      if (!Cookies.get('session')) {
         this.$router.push('/login');
       }
     },

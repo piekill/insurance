@@ -25,6 +25,7 @@
 </template>
 
 <script>
+import Cookies from 'js-cookie';
 import { ROSTER_LOGIN } from '../common/api';
 
 const sha256 = require('js-sha256');
@@ -61,11 +62,9 @@ export default {
         pwd: sha256(this.loginForm.password),
       }, (res) => {
         if (res.data.result_code === 'success') {
-          const expireDays = 1000 * 60 * 60 * 24 * 7;
-          this.setCookie('session', res.data.session, expireDays);
+          Cookies.set('session', res.data.session, { expires: 7 });
           this.$forceUpdate();
           this.$store.commit('updateUserInfo', res.data.data);
-          this.$router.addRoutes(this.$store.getters.routes);
           this.$router.replace('/');
         } else {
           this.$Message.error('登录失败，请输入正确密码。');

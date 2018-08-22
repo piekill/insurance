@@ -1,8 +1,12 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import { asyncRouterMap, constRouterMap } from '../router';
+import VuexPersistence from 'vuex-persist';
 
 Vue.use(Vuex);
+
+const vuexLocal = new VuexPersistence({
+  storage: window.localStorage,
+});
 
 const store = new Vuex.Store({
   state: {
@@ -17,17 +21,15 @@ const store = new Vuex.Store({
   mutations: {
     updateUserInfo(state, newUserInfo) {
       state.userInfo = newUserInfo;
-      let routes = constRouterMap;
-      if (newUserInfo.role === 'admin') {
-        routes = routes.concat(asyncRouterMap);
-      }
-      state.userRoutes.routes = routes;
+    },
+    clearState(state) {
+      state.userInfo = { role: '' };
     },
   },
   getters: {
     role: state => state.userInfo.role,
-    routes: state => state.userRoutes.routes,
   },
+  plugins: [vuexLocal.plugin],
 });
 
 export default store;

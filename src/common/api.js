@@ -7,3 +7,4 @@ export const ROSTER_LOGIN = `${host}/login`;
 export const ROSTER_CHANGE = `${host}/roster/change`;
 export const ROSTER_ADD = `${host}/roster/add`;
 export const ADMIN_OVERVIEW = `${host}/roster/overview`;
+export const ADMIN_EXPORT = `${host}/roster/export`;

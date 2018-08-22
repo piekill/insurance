@@ -90,4 +90,17 @@ module.exports = {
         });
       });
   },
+  export_file(req, res) {
+    return rosterModel.findAll({
+      where: { register: 1 },
+      attributes: { exclude: ['id', 'creation_time', 'update_time', 'register'] },
+      order: [['grade', 'ASC'], ['class', 'ASC']],
+      raw: true,
+    }).then((d) => {
+      res.send({
+        result_code: 'success',
+        data: d,
+      });
+    });
+  },
 };

@@ -94,6 +94,7 @@
   </div>
 </template>
 <script>
+import Cookies from 'js-cookie';
 import { ROSTER_CLASSLIST, ROSTER_QUERY, ROSTER_UPDATE, ROSTER_ADD, ROSTER_CHANGE } from '../common/api';
 import Framework from './framework';
 
@@ -293,8 +294,9 @@ export default {
       this.$forceUpdate();
     },
     logout() {
-      this.delCookie('session');
-      this.$router.push('/login/');
+      Cookies.remove('session');
+      this.$store.commit('clearState');
+      this.$router.push('/login');
     },
     handleShowAddRecord() {
       if (this.classPick === '' || this.gradePick === '') {
