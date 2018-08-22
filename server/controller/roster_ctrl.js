@@ -93,7 +93,16 @@ module.exports = {
   export_file(req, res) {
     return rosterModel.findAll({
       where: { register: 1 },
-      attributes: { exclude: ['id', 'creation_time', 'update_time', 'register'] },
+      attributes: [
+        ['name', '姓名'],
+        ['gender', '性别'],
+        ['birthday', '出生年月'],
+        ['nid', '身份证'],
+        ['guardian', '监护人'],
+        ['phone', '电话'],
+        ['grade', '年级'],
+        ['class', '班级'],
+      ],
       order: [['grade', 'ASC'], ['class', 'ASC']],
       raw: true,
     }).then((d) => {
