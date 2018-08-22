@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "dev": "supervisor -- server/app",
-    "start": "npm run dev",
+    "start": "pm2 start server/app.js --watch",
     "lint": "eslint --ext .js,.vue src",
     "build": "node build/build.js"
   },
@@ -19,6 +19,7 @@
     "js-sha256": "^0.9.0",
     "moment": "^2.22.2",
     "mysql2": "^1.6.1",
+    "pm2": "^3.0.3",
     "sequelize": "^4.38.0",
     "serve-favicon": "^2.5.0",
     "vue": "^2.5.2",
