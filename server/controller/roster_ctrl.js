@@ -97,7 +97,7 @@ module.exports = {
       attributes: [
         ['name', '姓名'],
         ['gender', '性别'],
-        ['birthday', '出生年月'],
+        ['birthday', '出生日期'],
         ['nid', '身份证'],
         ['guardian', '监护人'],
         ['phone', '电话'],

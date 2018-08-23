@@ -1,9 +1,5 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Roster from '../components/roster';
-import Login from '../components/login';
-import Admin from '../components/admin';
-import NotFound from '../components/errorpage';
 
 Vue.use(Router);
 
@@ -13,17 +9,17 @@ export default new Router({
     {
       path: '/login',
       name: 'Login',
-      component: Login,
+      component: () => import('../components/login'),
     },
     {
       path: '/',
       name: 'Roster',
-      component: Roster,
+      component: () => import('../components/roster'),
     },
     {
       path: '/manage',
       name: 'Admin',
-      component: Admin,
+      component: () => import('../components/admin'),
       meta: {
         role: ['admin'],
       },
@@ -31,7 +27,7 @@ export default new Router({
     {
       path: '*',
       name: 'NotFound',
-      component: NotFound,
+      component: () => import('../components/errorpage'),
     },
   ],
 });

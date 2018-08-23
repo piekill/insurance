@@ -44,7 +44,7 @@
             <Form-item label="性别" prop="gender">
               <Input class="dc-w200" v-model="curRecord.gender" />
             </Form-item>
-            <Form-item label="生日" prop="birthday">
+            <Form-item label="出生日期" prop="birthday">
               <Input class="dc-w200" v-model="curRecord.birthday" />
             </Form-item>
             <Form-item label="身份证" prop="nid">
@@ -71,7 +71,7 @@
             <Form-item label="性别" prop="gender">
               <Input class="dc-w200" v-model="curRecord.gender" />
             </Form-item>
-            <Form-item label="生日" prop="birthday">
+            <Form-item label="出生日期" prop="birthday">
               <Input class="dc-w200" v-model="curRecord.birthday" />
             </Form-item>
             <Form-item label="身份证" prop="nid">
@@ -128,7 +128,7 @@ export default {
           maxWidth: 80,
         },
         {
-          title: '生日',
+          title: '出生日期',
           key: 'birthday',
           minWidth: 100,
         },
