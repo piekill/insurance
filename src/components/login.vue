@@ -2,22 +2,22 @@
   <div class="login-container">
     <div class="login-form">
       <div class="title-container">
-        <h3 class="title">系统登录</h3>
+        <h3 class="title">福建师范大学附属福清德旺中学<br/><br/>学生投保系统</h3>
       </div>
       <Form ref="loginForm" :model="loginForm" :rules="ruleInline">
-        <FormItem prop="user">
+        <FormItem prop="user" style="display: none;">
           <Input type="text" v-model="loginForm.user" placeholder="用户名" disabled>
             <Icon type="ios-person-outline" slot="prepend"></Icon>
           </Input>
         </FormItem>
         <FormItem prop="password">
-          <Input type="password" v-model="loginForm.password" placeholder="密码"
+          <Input size="large" type="password" v-model="loginForm.password" placeholder="密码"
                  @on-enter="handleSubmit('loginForm')" autofocus="true">
             <Icon type="ios-lock-outline" slot="prepend"></Icon>
           </Input>
         </FormItem>
         <FormItem>
-          <Button type="primary" @click="handleSubmit('loginForm')">登录</Button>
+          <Button size="large" type="primary" @click="handleSubmit('loginForm')">登录</Button>
         </FormItem>
       </Form>
     </div>
@@ -89,7 +89,7 @@ export default {
       right: 0;
       width: 300px;
       padding: 35px 35px 15px 35px;
-      margin: 120px auto;
+      margin: 90px auto;
       text-align: center;
     }
     .title-container {
@@ -97,7 +97,7 @@ export default {
       .title {
         font-size: 26px;
         color: $light_gray;
-        margin: 0px auto 40px auto;
+        margin: 0px auto 60px auto;
         text-align: center;
         font-weight: bold;
       }
