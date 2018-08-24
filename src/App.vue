@@ -14,6 +14,9 @@ export default {
   html, body, #app, .layout, .ivu-layout{
     height: 100%;
   }
+  body{
+    background-color: #515a6e;
+  }
   .ivu-layout-header{
     padding: 0px 30px;
   }

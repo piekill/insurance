@@ -76,13 +76,10 @@ export default {
 </script>
 
 <style scoped rel="stylesheet/scss" lang="scss">
-  $bg:#515a6e;
   $light_gray:#eee;
   .login-container {
-    position: fixed;
     height: 100%;
     width: 100%;
-    background-color: $bg;
     .login-form {
       position: absolute;
       left: 0;
