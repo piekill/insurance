@@ -42,10 +42,13 @@
               <Input class="dc-w200" v-model="curRecord.name" autofocus="true"/>
             </Form-item>
             <Form-item label="性别" prop="gender">
-              <Input class="dc-w200" v-model="curRecord.gender" />
+              <RadioGroup v-model="curRecord.gender">
+                <Radio label="男">男</Radio>
+                <Radio label="女">女</Radio>
+              </RadioGroup>
             </Form-item>
             <Form-item label="出生日期" prop="birthday">
-              <Input class="dc-w200" v-model="curRecord.birthday" />
+              <Input class="dc-w200" v-model="curRecord.birthday" placeholder="格式：年-月-日"/>
             </Form-item>
             <Form-item label="身份证" prop="nid">
               <Input class="dc-w200" v-model="curRecord.nid" />
@@ -69,10 +72,13 @@
               <Input class="dc-w200" v-model="curRecord.name" autofocus="true"/>
             </Form-item>
             <Form-item label="性别" prop="gender">
-              <Input class="dc-w200" v-model="curRecord.gender" />
+              <RadioGroup v-model="curRecord.gender">
+                <Radio label="男">男</Radio>
+                <Radio label="女">女</Radio>
+              </RadioGroup>
             </Form-item>
             <Form-item label="出生日期" prop="birthday">
-              <Input class="dc-w200" v-model="curRecord.birthday" />
+              <Input class="dc-w200" v-model="curRecord.birthday" placeholder="格式：年-月-日"/>
             </Form-item>
             <Form-item label="身份证" prop="nid">
               <Input class="dc-w200" v-model="curRecord.nid" />
@@ -226,10 +232,14 @@ export default {
           { required: true, message: '请输入姓名', trigger: 'blur' },
         ],
         gender: [
-          { required: true, message: '请输入性别', trigger: 'blur' },
+          { required: true, message: '请选择性别', trigger: 'blur' },
         ],
         birthday: [
-          { required: true, message: '请输入生日', trigger: 'blur' },
+          { type: 'string',
+            pattern: /^\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/,
+            message: '请填写正确的日期，例如2005-09-01',
+            trigger: 'blur',
+          },
         ],
       },
     };
@@ -365,6 +375,9 @@ export default {
           title: res.data.result_code === 'success' ? '修改成功' : '修改失败',
         });
       });
+    },
+    birthdayChange(date) {
+      this.curRecord.birthday = date;
     },
     deepcopy(elem) {
       return JSON.parse(JSON.stringify(elem));
