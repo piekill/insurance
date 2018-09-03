@@ -78,7 +78,8 @@ module.exports = {
   overview(req, res) {
     return sequelize.query('select grade, class, count(*) as total, sum(register) as registered, ' +
       'max(unix_timestamp(update_time)) as update_time ' +
-      'from roster group by grade, class order by grade, class',
+      'from roster group by grade, class order by field(grade, "初一", "初二", "初三", "高一", "高二", "高三"), ' +
+      'convert(class, unsigned integer)',
     { type: sequelize.QueryTypes.SELECT })
       .then((d) => {
         d.forEach((elem) => {
