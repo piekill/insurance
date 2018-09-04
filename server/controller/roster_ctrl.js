@@ -105,7 +105,8 @@ module.exports = {
         ['grade', '年级'],
         ['class', '班级'],
       ],
-      order: [['grade', 'ASC'], ['class', 'ASC']],
+      order: [sequelize.literal('field(grade, "初一", "初二", "初三", "高一", "高二", "高三")'),
+        sequelize.literal('convert(class, unsigned integer)')],
       raw: true,
     }).then((d) => {
       res.send({
