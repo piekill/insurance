@@ -66,13 +66,16 @@ module.exports = {
     });
   },
   classlist(req, res) {
-    return rosterModel.aggregate('class', 'DISTINCT', { plain: false })
-      .then((d) => {
-        res.send({
-          result_code: 'success',
-          data: d,
-        });
+    return rosterModel.findAll({
+      attributes: [[sequelize.fn('DISTINCT', sequelize.col('class')), 'clasz']],
+      order: [sequelize.literal('convert(class, unsigned integer)')],
+      raw: true,
+    }).then((d) => {
+      res.send({
+        result_code: 'success',
+        data: d,
       });
+    });
   },
   /* eslint no-param-reassign:["error", { "ignorePropertyModificationsFor": ["elem"] }] */
   overview(req, res) {

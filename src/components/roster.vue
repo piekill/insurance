@@ -395,8 +395,8 @@ export default {
     window.get(ROSTER_CLASSLIST, null, (res) => {
       res.data.data.forEach((entry) => {
         this.classList.push({
-          value: entry.DISTINCT,
-          label: entry.DISTINCT,
+          value: entry.clasz,
+          label: entry.clasz,
         });
       });
     });
