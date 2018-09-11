@@ -32,7 +32,7 @@ new Vue({
   },
   methods: {
     checkLogin() {
-      if (!Cookies.get('session')) {
+      if (!Cookies.get('session') || this.$store.getters.role !== 'admin') {
         this.$router.push('/login');
       }
     },
