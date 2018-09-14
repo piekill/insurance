@@ -52,6 +52,12 @@ export default {
           title: '投保率(%)',
           key: 'ratio',
           sortable: true,
+          sortMethod(a, b, type) {
+            if (type === 'asc') {
+              return parseFloat(a) > parseFloat(b) ? 1 : -1;
+            }
+            return parseFloat(a) < parseFloat(b) ? 1 : -1;
+          },
         },
         {
           title: '更新时间',
