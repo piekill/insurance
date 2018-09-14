@@ -80,6 +80,7 @@ module.exports = {
   /* eslint no-param-reassign:["error", { "ignorePropertyModificationsFor": ["elem"] }] */
   overview(req, res) {
     return sequelize.query('select grade, class, count(*) as total, sum(register) as registered, ' +
+      'round(sum(register)/count(*)*100, 2) as ratio, ' +
       'max(unix_timestamp(update_time)) as update_time ' +
       'from roster group by grade, class order by field(grade, "初一", "初二", "初三", "高一", "高二", "高三"), ' +
       'convert(class, unsigned integer)',

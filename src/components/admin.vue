@@ -49,6 +49,11 @@ export default {
           key: 'registered',
         },
         {
+          title: '投保率(%)',
+          key: 'ratio',
+          sortable: true,
+        },
+        {
           title: '更新时间',
           key: 'update_time',
           sortable: true,
