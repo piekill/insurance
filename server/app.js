@@ -33,7 +33,7 @@ if (config.secure) {
     res.end();
   }).listen(80);
 } else {
-  app.listen(9999, () => {
+  app.listen(80, () => {
     console.log('success listen...');
   });
 }
