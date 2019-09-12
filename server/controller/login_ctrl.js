@@ -1,6 +1,6 @@
 const sha256 = require('js-sha256');
 
-const userPwd = sha256('fqdwzx');
+const userPwd = sha256('pingan');
 const adminPwd = sha256('baoxian');
 
 module.exports = {

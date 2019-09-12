@@ -12,7 +12,6 @@ const sequelize = new Sequelize(config.database, config.username, config.passwor
     min: 0,
     idle: 30000,
   },
-  operatorsAliases: false,
   logging: false,
 });
 const rosterModel = sequelize.import('../model/roster');

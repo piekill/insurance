@@ -67,8 +67,8 @@ export default {
           this.$store.commit('updateUserInfo', res.data.data);
           this.$router.replace('/');
         } else {
-          this.$Message.error('登录失败，请输入正确密码。');
-          // this.$Message.error('系统已关闭，若有更新请联系管理员。');
+          // this.$Message.error('登录失败，请输入正确密码。');
+          this.$Message.error('系统已关闭，若有更新请联系管理员。');
         }
       });
     },

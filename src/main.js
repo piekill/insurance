@@ -32,8 +32,8 @@ new Vue({
   },
   methods: {
     checkLogin() {
-      // if (!Cookies.get('session') || this.$store.getters.role !== 'admin') {
-      if (!Cookies.get('session')) {
+      if (!Cookies.get('session') || this.$store.getters.role !== 'admin') {
+      // if (!Cookies.get('session')) {
         this.$router.push('/login');
       }
     },

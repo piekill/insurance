@@ -208,7 +208,7 @@ export default {
       gradePick: '',
       classPick: '',
       selected: 0,
-      noDataMsg: '请选择班级',
+      noDataMsg: '请选择年级和班级',
       confirmModal: false,
       tableHeight: 550,
       showAddRecord: false,
@@ -241,6 +241,10 @@ export default {
             trigger: 'blur',
           },
         ],
+        // nid: [
+        //   { required: true, message: '请输入正确的身份证',
+        //    trigger: 'blur', validator: this.validatorIdNumber },
+        // ],
       },
     };
   },
@@ -381,6 +385,13 @@ export default {
     },
     deepcopy(elem) {
       return JSON.parse(JSON.stringify(elem));
+    },
+    validatorIdNumber(rule, value, callback) {
+      if (value && (!(/\d{17}[\d|x]/).test(value) || (value.length !== 18))) {
+        callback(new Error('身份证号码不符合规范'));
+      } else {
+        callback();
+      }
     },
   },
   created() {
