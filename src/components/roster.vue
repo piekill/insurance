@@ -3,13 +3,13 @@
     <Framework activeMenu="1">
       <div slot="main-content">
         <div class="pick-buttons">
-          <Select v-model="gradePick" style="width:100px"
+          <Select v-model="gradePick" style="width:150px" size="large"
                   placeholder="请选择年级" @on-change="queryRoster">
             <Option v-for="grade in gradeList" :value="grade.value" :key="grade.value">
               {{ grade.label }}
             </Option>
           </Select>
-          <Select v-model="classPick" style="width:100px"
+          <Select v-model="classPick" style="width:150px" size="large"
                   placeholder="请选择班级" @on-change="queryRoster">
             <Option v-for="clasz in classList" :value="clasz.value" :key="clasz.value">
               {{ clasz.label }}
@@ -113,7 +113,7 @@ export default {
       columns: [
         {
           type: 'selection',
-          width: 50,
+          width: 60,
           align: 'center',
           fixed: 'left',
         },
@@ -425,5 +425,11 @@ export default {
 .pick-buttons{
   margin-bottom: 5px;
   text-align: center;
+}
+/deep/ .ivu-table-tip{
+  font-size: 14px;
+}
+/deep/ .ivu-select-placeholder {
+  color: #999999 !important;
 }
 </style>

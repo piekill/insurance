@@ -51,7 +51,7 @@
             <slot name="main-content" ></slot>
           </Card>
       </Content>
-      <Footer class="layout-footer-center">2019 &copy; Piekill.com</Footer>
+      <Footer class="layout-footer-center">2020 &copy; Piekill.com</Footer>
     </Layout>
   </div>
 </template>
