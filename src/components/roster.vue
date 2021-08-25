@@ -56,6 +56,9 @@
             <Form-item label="监护人" prop="guardian">
               <Input class="dc-w200" v-model="curRecord.guardian" />
             </Form-item>
+            <Form-item label="监护人身份证" prop="guardian_nid">
+              <Input class="dc-w200" v-model="curRecord.guardian_nid" />
+            </Form-item>
             <Form-item label="电话" prop="phone">
               <Input class="dc-w200" v-model="curRecord.phone" />
             </Form-item>
@@ -85,6 +88,9 @@
             </Form-item>
             <Form-item label="监护人" prop="guardian">
               <Input class="dc-w200" v-model="curRecord.guardian" />
+            </Form-item>
+            <Form-item label="监护人身份证" prop="guardian_nid">
+              <Input class="dc-w200" v-model="curRecord.guardian_nid" />
             </Form-item>
             <Form-item label="电话" prop="phone">
               <Input class="dc-w200" v-model="curRecord.phone" />
@@ -147,6 +153,11 @@ export default {
           title: '监护人',
           key: 'guardian',
           minWidth: 80,
+        },
+        {
+          title: '监护人身份证',
+          key: 'guardian_nid',
+          minWidth: 130,
         },
         {
           title: '电话',
@@ -221,6 +232,7 @@ export default {
         birthday: '',
         nid: '',
         guardian: '',
+        guardian_nid: '',
         phone: '',
         grade: '',
         class: '',

@@ -6,7 +6,7 @@ moment.locale('zh-cn');
 
 const sequelize = new Sequelize(config.database, config.username, config.password, {
   host: config.host,
-  dialect: 'mysql',
+  dialect: 'mariadb',
   pool: {
     max: 5,
     min: 0,
@@ -42,7 +42,7 @@ module.exports = {
   },
   add(req, res) {
     return rosterModel.create(req.body, {
-      fields: ['name', 'gender', 'birthday', 'nid', 'guardian', 'phone', 'grade', 'class', 'register'],
+      fields: ['name', 'gender', 'birthday', 'nid', 'guardian', 'guardian_nid', 'phone', 'grade', 'class', 'register'],
     }).then((d) => {
       res.send({
         result_code: d !== null ? 'success' : 'fail',
@@ -57,7 +57,7 @@ module.exports = {
       where: {
         id: req.body.id,
       },
-      fields: ['name', 'gender', 'birthday', 'nid', 'guardian', 'phone', 'grade', 'class', 'register'],
+      fields: ['name', 'gender', 'birthday', 'nid', 'guardian', 'guardian_nid', 'phone', 'grade', 'class', 'register'],
     }).then((d) => {
       res.send({
         result_code: d[0] === 1 ? 'success' : 'fail',
@@ -104,6 +104,7 @@ module.exports = {
         ['birthday', '出生日期'],
         ['nid', '身份证'],
         ['guardian', '监护人'],
+        ['guardian', '监护人身份证'],
         ['phone', '电话'],
         ['grade', '年级'],
         ['class', '班级'],

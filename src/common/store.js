@@ -10,7 +10,7 @@ const vuexLocal = new VuexPersistence({
 
 const store = new Vuex.Store({
   state: {
-    domain: 'http://piekill.com',
+    domain: 'https://x.piekill.com',
     userInfo: {
       role: '',
     },

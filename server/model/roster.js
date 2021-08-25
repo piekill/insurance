@@ -21,6 +21,9 @@ module.exports = function (sequelize, DataTypes) {
     guardian: {
       type: DataTypes.STRING(32),
     },
+    guardian_nid: {
+      type: DataTypes.STRING(32),
+    },
     phone: {
       type: DataTypes.STRING(64),
     },
