@@ -37,7 +37,7 @@
         </Modal>
         <Modal title="新增学生记录" v-model="showAddRecord" width="320"
                :mask-closable="false">
-          <Form ref="addingRecord" :model="curRecord" :rules="recordRule" :label-width="80">
+          <Form ref="addingRecord" :model="curRecord" :rules="recordRule" :label-width="100">
             <Form-item label="姓名" prop="name">
               <Input class="dc-w200" v-model="curRecord.name" autofocus="true"/>
             </Form-item>
@@ -70,7 +70,7 @@
         </Modal>
         <Modal title="修改学生记录" v-model="showUpdateRecord" width="320"
                :mask-closable="false">
-          <Form ref="updatingRecord" :model="curRecord" :rules="recordRule" :label-width="80">
+          <Form ref="updatingRecord" :model="curRecord" :rules="recordRule" :label-width="100">
             <Form-item label="姓名" prop="name">
               <Input class="dc-w200" v-model="curRecord.name" autofocus="true"/>
             </Form-item>
