@@ -27,8 +27,6 @@
           <Button @click="handleShowAddRecord" type="primary">新增</Button>
           <Button @click="confirm" type="success">提交</Button>
           <Button @click="example = true" type="info">回执示例</Button>
-          <Button @click="logout" type="warning">注销</Button>
-        </div>
         <Modal
           v-model="confirmModal"
           title="确认提交"
@@ -325,11 +323,6 @@ export default {
     handleResize() {
       this.tableHeight = `${document.documentElement.clientHeight}` - 200;
       this.$forceUpdate();
-    },
-    logout() {
-      Cookies.remove('session');
-      this.$store.commit('clearState');
-      this.$router.push('/login');
     },
     handleShowAddRecord() {
       if (this.classPick === '' || this.gradePick === '') {

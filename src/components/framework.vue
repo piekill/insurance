@@ -25,6 +25,13 @@
   .layout-footer-center{
     text-align: center;
   }
+  .pull-right{
+    float:right;
+    margin-top: 15px;
+  }
+  .ivu-menu-item{
+    padding: 0 5px !important;
+  }
 </style>
 <template>
   <div class="layout">
@@ -44,6 +51,9 @@
               管理
             </menu-item>
           </div>
+          <div>
+            <Button @click="logout" type="warning" ghost class="pull-right">注销</Button>
+          </div>
         </Menu>
       </Header>
       <Content style="padding: 5px">
@@ -57,6 +67,7 @@
 </template>
 
 <script>
+import Cookies from 'js-cookie';
 
 export default {
   props: ['activeMenu'],
@@ -68,6 +79,13 @@ export default {
   },
   created() {
     this.isAdmin = this.$store.getters.role === 'admin';
+  },
+  methods: {
+    logout() {
+      Cookies.remove('session');
+      this.$store.commit('clearState');
+      this.$router.push('/login');
+    },
   },
 };
 </script>

@@ -7,7 +7,6 @@
         </Table>
         <div class="admin-buttons">
           <Button @click="exportFile" type="success">数据导出</Button>
-          <Button @click="logout" type="warning">注销</Button>
           <Spin size="large" fix v-if="spinShow"></Spin>
         </div>
       </div>
@@ -17,7 +16,6 @@
 </template>
 
 <script>
-import Cookies from 'js-cookie';
 import XLSX from 'xlsx';
 import Framework from './framework';
 import { ADMIN_OVERVIEW, ADMIN_EXPORT } from '../common/api';
@@ -91,11 +89,6 @@ export default {
       const wb = XLSX.utils.book_new();
       XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
       XLSX.writeFile(wb, '名单.xlsx');
-    },
-    logout() {
-      Cookies.remove('session');
-      this.$store.commit('clearState');
-      this.$router.push('/login');
     },
     fetchData() {
       window.get(ADMIN_OVERVIEW, null, (res) => {
