@@ -102,9 +102,9 @@
             <Button @click="onUpdateRecord" class="dc-ml10 dc-w80" type="primary">确认</Button>
           </div>
         </Modal>
-        <Modal v-model="example" title="回执单示例" height="50%" width="80%">
+        <Modal v-model="example" title="回执单示例" height="40%" width="60%">
           <div>
-            <img src="../assets/receipt.png"/>
+            <img src="../assets/receipt.png" style="height:100%; width:100%;"/>
           </div>
         </Modal>
       </div>
