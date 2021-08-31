@@ -110,7 +110,6 @@
   </div>
 </template>
 <script>
-import Cookies from 'js-cookie';
 import { ROSTER_CLASSLIST, ROSTER_QUERY, ROSTER_UPDATE, ROSTER_ADD, ROSTER_CHANGE } from '../common/api';
 import Framework from './framework';
 
