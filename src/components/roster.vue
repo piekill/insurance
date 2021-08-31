@@ -26,7 +26,7 @@
           <Button @click="handleSelectAll(false)" type="info">清空</Button>
           <Button @click="handleShowAddRecord" type="primary">新增</Button>
           <Button @click="confirm" type="success">提交</Button>
-          <Button @click="example = true" type="info">回执单示例</Button>
+          <Button @click="example = true" type="info">回执示例</Button>
           <Button @click="logout" type="warning">注销</Button>
         </div>
         <Modal
@@ -102,7 +102,7 @@
             <Button @click="onUpdateRecord" class="dc-ml10 dc-w80" type="primary">确认</Button>
           </div>
         </Modal>
-        <Modal v-model="example" title="回执单示例" height="40%" width="60%">
+        <Modal v-model="example" title="回执示例" height="40%" width="60%">
           <div>
             <img src="../assets/receipt.png" style="height:100%; width:100%;"/>
           </div>
