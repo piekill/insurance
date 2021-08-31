@@ -51,7 +51,7 @@
             <slot name="main-content" ></slot>
           </Card>
       </Content>
-      <Footer class="layout-footer-center">2020 &copy; Piekill.com</Footer>
+      <Footer class="layout-footer-center">2021 &copy; 福清德旺中学 & Piekill.com</Footer>
     </Layout>
   </div>
 </template>

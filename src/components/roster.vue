@@ -26,6 +26,7 @@
           <Button @click="handleSelectAll(false)" type="info">清空</Button>
           <Button @click="handleShowAddRecord" type="primary">新增</Button>
           <Button @click="confirm" type="success">提交</Button>
+          <Button @click="example = true" type="info">回执单示例</Button>
           <Button @click="logout" type="warning">注销</Button>
         </div>
         <Modal
@@ -99,6 +100,11 @@
           <div slot="footer">
             <Button @click="cancelUpdateRecord" class="dc-ml10 dc-w80">取消</Button>
             <Button @click="onUpdateRecord" class="dc-ml10 dc-w80" type="primary">确认</Button>
+          </div>
+        </Modal>
+        <Modal v-model="example" title="回执单示例">
+          <div>
+            <img src="../assets/receipt.png" style="height: 100%; width: 100%;"/>
           </div>
         </Modal>
       </div>
@@ -258,6 +264,7 @@ export default {
         //    trigger: 'blur', validator: this.validatorIdNumber },
         // ],
       },
+      example: false,
     };
   },
   methods: {
